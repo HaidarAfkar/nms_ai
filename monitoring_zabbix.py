@@ -59,9 +59,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print("Text : ", text)
     print(f'User ({update.message.chat.id}, {sender_username}) in {message_type}: "{text}"')
 
+
+    user_allowed = ['HaidarAfkar']
+
     groups = update.message.chat.id
 
-    if message_type == 'supergroup' or message_type == 'group':
+    users = sender_username
+    
+    if message_type == 'private' and users in user_allowed:
+        response: str = handle_response(text, sender_username, groups)
+  # Pass sender_username here
+
+    '''if message_type == 'supergroup' or message_type == 'group':
         if BOT_USERNAME in text:
             new_text: str = text.replace(BOT_USERNAME, '').strip()
             response: str = handle_response(new_text, sender_username, groups)  # Pass sender_username here
@@ -69,7 +78,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
     else:
         # response: str = handle_response(text, sender_username)
-        pass
+        pass'''
 
     print('Bot:', response)
     await update.message.reply_text(response)
