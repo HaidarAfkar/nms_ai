@@ -68,17 +68,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     if message_type == 'private' and users in user_allowed:
         response: str = handle_response(text, sender_username, groups)
+    else :
+        pass
   # Pass sender_username here
 
-    '''if message_type == 'supergroup' or message_type == 'group':
-        if BOT_USERNAME in text:
-            new_text: str = text.replace(BOT_USERNAME, '').strip()
-            response: str = handle_response(new_text, sender_username, groups)  # Pass sender_username here
-        else:
-            return
-    else:
-        # response: str = handle_response(text, sender_username)
-        pass'''
 
     print('Bot:', response)
     await update.message.reply_text(response)
